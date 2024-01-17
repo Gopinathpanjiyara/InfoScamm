@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Create a Post</title>
+  <style>
+    body {
+      background-color: rgb(33,32,32); /* Dark background color */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      color: #fff; /* Text color for the body */
+    }
+
+    #post-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff; /* Slightly darker background color */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Increased shadow */
+    }
+
+    #post-heading {
+      color: #007bbf; /* Green color for the heading */
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #name-input,
+    #contact-input,
+    #email-input,
+    #post-content {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #6b727c; /* Border color */
+      border-radius: 5px;
+      background-color: #fff; /* Input background color */
+      color: #fff; /* Text color for input */
+    }
+
+    #image-input {
+      margin-bottom: 15px;
+    }
+
+    #preview-image {
+      max-width: 100%;
+      height: auto;
+      display: none;
+      border-radius: 5px;
+    }
+
+    #create-post-btn {
+      background-color: #007bff; /* Blue background color for the button */
+      color: #fff; /* Text color for the button */
+      padding: 12px 20px; /* Increased padding */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease; /* Smooth transition */
+    }
+
+    #create-post-btn:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+    }
+  </style>
+</head>
+<body>
+
+<div id="post-form">
+  <h2 id="post-heading">Post Scam Detail Here</h2>
+
+  <div id="inner-content">
+    <input type="text" id="name-input" placeholder="Your Name" />
+    <input type="text" id="contact-input" placeholder="Your Contact Number" />
+    <input type="email" id="email-input" placeholder="Your Email Address" />
+
+    <textarea id="post-content" placeholder="Type your post here..."></textarea>
+
+    <input type="file" id="image-input" accept="image/*" />
+    <img id="preview-image" alt="Image Preview" />
+
+    <button type="button" id="create-post-btn" onclick="createPost()">Create Post</button>
+  </div>
+</div>
+
+<script>
+  function createPost() {
+    // Get the user's information, post content, and image file
+    var userName = document.getElementById('name-input').value;
+    var userContact = document.getElementById('contact-input').value;
+    var userEmail = document.getElementById('email-input').value;
+    var postContent = document.getElementById('post-content').value;
+    var imageInput = document.getElementById('image-input');
+    var imageFile = imageInput.files[0];
+
+    // Log the details to the console (you can replace this with your own logic)
+    console.log('User Name:', userName);
+    console.log('Contact Information:', userContact);
+    console.log('Email Address:', userEmail);
+    console.log('Post Content:', postContent);
+    console.log('Image File:', imageFile);
+
+    // Reset the form
+    document.getElementById('create-post-form').reset();
+
+    // Optionally, display a success message or redirect the user
+  }
+
+  // Preview the selected image before creating the post
+  document.getElementById('image-input').addEventListener('change', function () {
+    var previewImage = document.getElementById('preview-image');
+    var imageInput = document.getElementById('image-input');
+
+    // Display the selected image if available
+    if (imageInput.files && imageInput.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        previewImage.src = e.target.result;
+        previewImage.style.display = 'block';
+      };
+      reader.readAsDataURL(imageInput.files[0]);
+    }
+  });
+</script>
+
+</body>
+</html>
