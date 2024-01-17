@@ -1,0 +1,84 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            background-color: rgb(33, 32, 32);
+            color: #fff;
+        }
+        .admin-container {
+            max-width: 600px;
+            margin: auto;
+            margin-top: 50px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <object type="text/html" data="navbar.html" style="width: 100%; height: 100%; overflow: hidden;"></object>
+
+    <div class="container admin-container">
+        <h2 class="text-center mb-4">Admin Panel</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Contact Number</th>
+                    <th>Address</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody id="formSubmissions"></tbody>
+        </table>
+    </div>
+
+    <object type="text/html" data="footer.html" style="width: 100%; position: relative; display: fixed; overflow: hidden;"></object>
+
+    <script>
+        // Simulated form submissions
+        const formSubmissions = [
+            { firstName: "John", lastName: "Doe", email: "john@example.com", contactNo: "1234567890", Address: "123 Main St", message: "Hello" },
+            // Add more submissions as needed
+        ];
+
+        // Display form submissions in the table
+        const formSubmissionsTable = document.getElementById("formSubmissions");
+
+        formSubmissions.forEach(submission => {
+            const row = document.createElement("tr");
+            Object.values(submission).forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+            formSubmissionsTable.appendChild(row);
+        });
+    </script>
+</body>
+</html>

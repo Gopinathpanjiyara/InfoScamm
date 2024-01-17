@@ -7,7 +7,7 @@
     <title>Contact Us</title>
     <style>
         body {
-            background-color: #3498db;
+            background-color: rgb(33, 32, 32);
             color: #fff;
         }
         .contact-container {
@@ -35,8 +35,13 @@
             color: #000;
         }
     </style>
+    <!-- Add these scripts in the head of your HTML file -->
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+
 </head>
 <body>
+    <object type="text/html" data="navbar.html" style="width: 100%; height: 100%; overflow: hidden;"></object>
 
 <div class="container contact-container">
     <h2 class="text-center mb-4 contact-heading">Contact Us</h2>
@@ -69,4 +74,52 @@
         </div>
         <button type="submit" class="btn btn-primary">Send Message</button>
     </form>
-</div>
+</div><br>
+<object type="text/html" data="footer.html" style="width: 100%; position:relative; display: fixed;overflow: hidden;"></object>
+
+<script>
+    // Replace this with your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDD3C6gQfKhnkebRwiDu-7GaE744p4J80c",
+  authDomain: "infoscam-f8fd5.firebaseapp.com",
+  projectId: "infoscam-f8fd5",
+  storageBucket: "infoscam-f8fd5.appspot.com",
+  messagingSenderId: "1096140821769",
+  appId: "1:1096140821769:web:44390f40b70171045eefd8",
+  measurementId: "G-0MCCNFMWHT"
+    };
+ 
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+ 
+    // Initialize Firestore
+    const db = firebase.firestore();
+
+    const form = document.querySelector('form');
+
+   form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      // Get form data
+      const formData = {
+         firstName: document.getElementById('firstName').value,
+         lastName: document.getElementById('lastName').value,
+         email: document.getElementById('email').value,
+         contactNo: document.getElementById('contactNo').value,
+         address: document.getElementById('Address').value,
+         message: document.getElementById('message').value,
+      };
+
+      // Save data to Firestore
+      try {
+         await db.collection('formSubmissions').add(formData);
+         alert('Form submitted successfully!');
+      } catch (error) {
+         console.error('Error adding document: ', error);
+         alert('Error submitting form. Please try again.');
+      }
+   });
+ </script>
+ 
+</body>
+</html>
