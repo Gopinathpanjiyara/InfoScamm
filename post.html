@@ -6,41 +6,39 @@
   <title>Create a Post</title>
   <style>
     body {
-      background-color: rgb(33,32,32); /* Dark background color */
+      background-color: rgb(33,32,32);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       margin: 20px;
-      color: #fff; /* Text color for the body */
+      color: #fff;
     }
 
     #post-form {
-      max-width: 600px;
+      max-width: 500px;
       margin: 0 auto;
-      background-color: #fff; /* Slightly darker background color */
+      background-color: #fff;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Increased shadow */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
 
     #post-heading {
-      color: #007bbf; /* Green color for the heading */
+      color: #007bbf;
       text-align: center;
       font-size: 24px;
       margin-bottom: 20px;
     }
 
-    #name-input,
-    #contact-input,
-    #email-input,
-    #post-content {
+    #inner-content input,
+    #inner-content textarea {
       width: 100%;
       margin-bottom: 15px;
       padding: 10px;
       box-sizing: border-box;
-      border: 1px solid #6b727c; /* Border color */
+      border: 1.5px solid #6b727c;
       border-radius: 5px;
-      background-color: #fff; /* Input background color */
-      color: #fff; /* Text color for input */
+      background-color: #fff;
+      color: #000;
     }
 
     #image-input {
@@ -55,30 +53,34 @@
     }
 
     #create-post-btn {
-      background-color: #007bff; /* Blue background color for the button */
-      color: #fff; /* Text color for the button */
-      padding: 12px 20px; /* Increased padding */
+      background-color: #007bff;
+      color: #fff;
+      padding: 12px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-size: 16px;
-      transition: background-color 0.3s ease; /* Smooth transition */
+      transition: background-color 0.3s ease;
+      text-align: center;
+      display: block;
+      margin: 0 auto;
     }
 
     #create-post-btn:hover {
-      background-color: #0056b3; /* Darker blue on hover */
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
 
 <div id="post-form">
-  <h2 id="post-heading">Post Scam Detail Here</h2>
+  <h2 id="post-heading">Incident Report</h2>
 
   <div id="inner-content">
-    <input type="text" id="name-input" placeholder="Your Name" />
+    <input type="text" id="name-input" placeholder="Your Name"required />
     <input type="text" id="contact-input" placeholder="Your Contact Number" />
     <input type="email" id="email-input" placeholder="Your Email Address" />
+    <input type="date" id="date-input" placeholder="Incident Date"required />
 
     <textarea id="post-content" placeholder="Type your post here..."></textarea>
 
@@ -91,33 +93,29 @@
 
 <script>
   function createPost() {
-    // Get the user's information, post content, and image file
     var userName = document.getElementById('name-input').value;
     var userContact = document.getElementById('contact-input').value;
     var userEmail = document.getElementById('email-input').value;
+    var userDate = document.getElementById('date-input').value;
     var postContent = document.getElementById('post-content').value;
     var imageInput = document.getElementById('image-input');
     var imageFile = imageInput.files[0];
 
-    // Log the details to the console (you can replace this with your own logic)
     console.log('User Name:', userName);
     console.log('Contact Information:', userContact);
     console.log('Email Address:', userEmail);
+    console.log('Incident Date:', userDate);
     console.log('Post Content:', postContent);
     console.log('Image File:', imageFile);
 
-    // Reset the form
     document.getElementById('create-post-form').reset();
 
-    // Optionally, display a success message or redirect the user
-  }
+    }
 
-  // Preview the selected image before creating the post
   document.getElementById('image-input').addEventListener('change', function () {
     var previewImage = document.getElementById('preview-image');
     var imageInput = document.getElementById('image-input');
 
-    // Display the selected image if available
     if (imageInput.files && imageInput.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
