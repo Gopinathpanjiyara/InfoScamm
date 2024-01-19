@@ -1,11 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>navbar</title>
+    <title>Contact</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -15,51 +15,37 @@
         }
     </script>
       <style>
-body {
-      background-color: rgb(33,32,32);
-    }
-
-    #about-container {
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      padding: 30px;
-      margin: 50px auto;
-      max-width: 500px;
-    }
-
-    #about {
-      text-align: center;
-      word-spacing: 3px;
-    }
-
-    #about h2 {
-      color: #007bff;
-    }
-
-    #about p {
-      font-size: 18px; 
-    }
-
-    .logo-box {
-      background-color: rgb(33,32,32); 
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-      max-width: 600px;
-      max-height: 100px;
-    }
-
-    .logo-box img {
-      max-width: 80%;
-      height: auto;
-    }
-
+/* body {
+            background-color: rgb(33, 32, 32);
+            color: #fff;
+        } */
+        .contact-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            margin-top: 50px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group label {
+            color: #3498db;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #3498db;
+            border-color: #3498db;
+        }
+        .btn-primary:hover {
+            background-color: #217dbb;
+            border-color: #217dbb;
+        }
+        .contact-heading {
+            color: #000;
+        }
       </style>
       
-  <link href="path/to/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
 </head>
 <body>
   
@@ -101,22 +87,41 @@ body {
       </div>
     </div>
   </nav>
-  <div id="about-container">
-    <div class="container" id="about">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="logo-box">
-            <img src= "/1705489137782.png" alt="Your Logo">
+
+  <object type="text/html" data="navbar.html" style="width: 100%; height: 100%; overflow: hidden;"></object>
+  <div class="container contact-container">
+      <h2 class="text-center mb-4 contact-heading">Contact Us</h2>
+      <form action="save_info.php" method="post">
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="firstName">First Name:</label>
+                  <input type="text" class="form-control" name="first_name" id="firstName" placeholder="Enter your first name" required>
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="lastName">Last Name:</label>
+                  <input type="text" class="form-control" name="last_name" id="lastName" placeholder="Enter your last name" required>
+              </div>
           </div>
-          <h2 class="display-4">About Us</h2>
-          <p class="lead">Welcome to InfoScam portal we are here to serve you as a scam awareness platform where citizens or scammed person can share there experience that create awareness among people to not get scammed by scammers and here you will get new and popular scam in your locality and understand how to detect and prevent it and you can also read in your comfortable languages. In post section you can post any new scam you found which was not listed in our website it was validate with our backend team then it get posted to create awareness and user can report their incident so no other citizen can get scammed.There is a Discuss room section where user can directly share to some other to get clarification about the scam and users can also reach to our team from contact us section for their concerns. </p>
-        </div>
-      </div>
-    </div>
+          <div class="form-group">
+              <label for="email">Your Email:</label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+              <label for="contactNo">Contact Number:</label>
+              <input type="tel" class="form-control" name="contact_number" id="contactNo" placeholder="Enter your contact number" required>
+          </div>
+          <div class="form-group">
+              <label for="Address">Address</label>
+              <input type="text" class="form-control" name="address" id="Address" placeholder="Enter your Full Address">
+          </div>
+          <div class="form-group">
+              <label for="message">Your Message:</label>
+              <textarea class="form-control" name="message" id="message" rows="4" placeholder="Enter your message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
   </div>
-  
-
-
+<br>
 <footer class="bg-white dark:bg-gray-900">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
@@ -204,8 +209,8 @@ body {
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 <script src="/index.js"></script>
+
 </body>
 </html>
-
 
 

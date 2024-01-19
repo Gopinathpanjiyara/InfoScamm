@@ -20,14 +20,8 @@
             margin-bottom: 20px;
         }
         .admin-logo {
-            /* width: 100px; /* Adjust the size as needed */
-             height: 100px; 
+            height: 100px;
             margin-bottom: 20px;
-        }
-        .admin-cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
         }
         form {
             max-width: 600px;
@@ -64,10 +58,6 @@
         button:hover {
             background-color: #0056b3;
         }
-        .logo{
-            height: 50px;
-        }
-       
         .return-link {
             margin-top: 20px;
             color: #007bff;
@@ -85,7 +75,7 @@
         <p>Publish New Scam To Main portal.</p>
     </div>
 
-    <form>
+    <form id="scamForm" action="scamportal.php" method="post">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
 
@@ -108,6 +98,27 @@
     </form>
 
     <a class="return-link" href="admin_panel.php">Return to Admin Panel</a>
+    <a class="return-link" href="postedscam.php">Posted Posts</a>
 
+    <script>
+        const form = document.getElementById('scamForm');
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData
+            });
+
+            if (response.ok) {
+                alert("Scam details posted successfully.");
+                location.reload(); // Reload the page after successful submission
+            } else {
+                const errorMessage = await response.text();
+                alert("Error posting scam details: " + errorMessage);
+                console.error('Error:', errorMessage);
+            }
+        });
+    </script>
 </body>
 </html>
