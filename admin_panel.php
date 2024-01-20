@@ -61,7 +61,7 @@
 </head>
 <body>
     <div class="admin-header">
-        <img class="admin-logo" src="/Screenshot 2024-01-17 161419.png" alt="Logo">
+        <img class="admin-logo" src="/1705489137782.png" alt="Logo">
         <h1>Admin Panel</h1>
         <p>Welcome to the admin panel. Manage posts, incident reports, and contacts.</p>
     </div>
