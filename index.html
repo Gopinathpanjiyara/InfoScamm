@@ -51,7 +51,7 @@
 
 <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <a href="/index.php" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="/New Project.png" class="h-12" alt="infoscam Logo" />
         
       </a>
@@ -141,6 +141,13 @@
         </span>
     </button>
 </div>
+<br>
+<div>
+    <marquee>
+        Hi this is demo
+    </marquee>
+</div>
+<br>
 
 
 <div class="ifr">
@@ -155,75 +162,59 @@ src="https://www.chatbase.co/chatbot-iframe/v_JUns1z3xXD1z5otk-0x"
 <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700" >
     <div class="flex items-center justify-between mb-4">
         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Latest Scams</h5>
-        <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+        <a href="/allpost.php" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
             View all
         </a>
    </div>
    <div class="flow-root">
-        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center">
-                   
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Neil Sims
-                        </p>
-                        
-                    </div>
-                   
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center ">
-                    
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Bonnie Green
-                        </p>
-                        
-                    </div>
-                   
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center">
-                  
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Michael Gough
-                        </p>
-                      
-                    </div>
-                  
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center ">
-                    
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Lana Byrd
-                        </p>
-                        
-                    </div>
-                    
-                </div>
-            </li>
-            <li class="pt-3 pb-0 sm:pt-4">
-                <div class="flex items-center ">
-                    
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Thomes Lean
-                        </p>
-                        
-                    </div>
-                  
-                </div>
-            </li>
-        </ul>
-   </div>
+    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+       <?php
+        // Replace the following with your database connection code
+        $servername = "localhost";
+        $username = "id21480896_msrit";
+        $password = "Aman@143";
+        $dbname = "id21480896_msritproject";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Replace the following query with your actual query to fetch names
+        $sql = "SELECT id, name FROM scams LIMIT 5";
+        $result = $conn->query($sql);
+
+        // Display names as clickable links
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<li class='py-3 sm:py-4'>
+                        <div class='flex items-center'>
+                            <div class='flex-1 min-w-0 ms-4'>
+                                <a href='/details.php?id=" . $row["id"] . "' class='text-sm font-medium text-gray-900 truncate dark:text-white'>
+                                    " . $row["name"] . "
+                                </a>
+                            </div>
+                        </div>
+                    </li>";
+            }
+        } else {
+            echo "0 results";
+        }
+
+        $conn->close();
+        ?>
+
+    </ul>
 </div>
+</div>
+
+</div>
+
+</div>
+
 
 </div>
 <footer class="bg-white dark:bg-gray-900">
