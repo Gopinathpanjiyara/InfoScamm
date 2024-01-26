@@ -1,4 +1,13 @@
 <?php
+
+session_start();
+
+// Check if the user is not logged in, redirect to admin_login.php
+if (!isset($_SESSION['user'])) {
+    header("Location: admin_login.php");
+    exit();
+}
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $servername = "localhost";

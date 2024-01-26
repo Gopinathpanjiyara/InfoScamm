@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>navbar</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.default.min.css" integrity="sha512-9VQ2ExqBC+Qlri9ijENdKsOcvUw/V8Dro2iLZFCW7eZoKa9F0mi5bBr/m1r1i5UuDEWAtPY9qbESG9E1vT9tZA==" crossorigin="anonymous" />
     <script>
         // On page load or when changing themes, best to add inline in `head` to avoid FOUC
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -42,6 +43,22 @@
             width: 100%;
           }
         }
+        #search-results {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 80%;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    /*display: none;*/
+}
+
+}
+
       </style>
       
   
@@ -49,44 +66,45 @@
 <body>
   
 
-<nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="/New Project.png" class="h-12" alt="infoscam Logo" />
-        
-      </a>
-      <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-          </svg>
-      </button>
-      <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-        <ul class="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
-          <li>
-            <a href="/index.html" class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Home</a>
-          </li>
-          <li>
-            <a href="/post.html" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Incident Report</a>
-          </li>
-          <li>
-            <a href="/about.html" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
-          </li>
-          <li>
-            <a href="/contact.html" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-            
-          </li>
-          <li>
-            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+    <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="/index.php" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/New Project.png" class="h-12" alt="infoscam Logo" />
+            </a>
+            <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
             </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+         
+            
+            <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
+                <ul class="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+                    <li>
+                        <a href="/index.html" class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page">Home</a>
+                    </li>
+                    <!-- Add other navigation items here -->
+                    <li>
+                        <a href="/post.html" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Incident Report</a>
+                    </li>
+                    <li>
+                        <a href="/about.html" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
+                    </li>
+                    <li>
+                        <a href="/contact.html" class="block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
+                    </li>
+                    <li>
+                        <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
   
 
 
@@ -96,23 +114,23 @@
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/Screenshot 2024-01-24 113729.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            <img src="/1.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
         <!-- Item 2 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/Screenshot 2024-01-24 113959.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            <img src="/2.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
         <!-- Item 3 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="Screenshot 2024-01-24 114221.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            <img src="/3.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
         <!-- Item 4 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/Screenshot 2024-01-24 114423.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            <img src="/4.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
         <!-- Item 5 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="/Screenshot 2024-01-24 114604.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            <img src="/5.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </div>
     </div>
     <!-- Slider indicators -->
@@ -143,9 +161,10 @@
 </div>
 
 
+
 <div class="ifr">
 <iframe
-src="https://www.chatbase.co/chatbot-iframe/v_JUns1z3xXD1z5otk-0x"
+src="https://www.chatbase.co/chatbot-iframe/sfi4Ty3ZPFYPnILhakv9j"
             width="50%"
             style="height: 400px;"
             frameborder="0"
@@ -155,75 +174,60 @@ src="https://www.chatbase.co/chatbot-iframe/v_JUns1z3xXD1z5otk-0x"
 <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700" >
     <div class="flex items-center justify-between mb-4">
         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Latest Scams</h5>
-        <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+        <a href="/allpost.php" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
             View all
         </a>
    </div>
    <div class="flow-root">
-        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center">
-                   
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Neil Sims
-                        </p>
-                        
+    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+       <?php
+        // Replace the following with your database connection code
+        $servername = "localhost";
+        $username = "id21480896_msrit";
+        $password = "Aman@143";
+        $dbname = "id21480896_msritproject";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+     
+// Replace the following query with your actual query to fetch names
+$sql = "SELECT id, name FROM scams ORDER BY scamId DESC LIMIT 5";
+$result = $conn->query($sql);
+
+// Display names as plain text (unclickable)
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<li class='py-3 sm:py-4'>
+                <div class='flex items-center'>
+                    <div class='flex-1 min-w-0 ms-4'>
+                        <span class='text-sm font-medium text-gray-900 truncate dark:text-white'>
+                            " . $row["name"] . "
+                        </span>
                     </div>
-                   
                 </div>
-            </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center ">
-                    
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Bonnie Green
-                        </p>
-                        
-                    </div>
-                   
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center">
-                  
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Michael Gough
-                        </p>
-                      
-                    </div>
-                  
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center ">
-                    
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Lana Byrd
-                        </p>
-                        
-                    </div>
-                    
-                </div>
-            </li>
-            <li class="pt-3 pb-0 sm:pt-4">
-                <div class="flex items-center ">
-                    
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Thomes Lean
-                        </p>
-                        
-                    </div>
-                  
-                </div>
-            </li>
-        </ul>
-   </div>
+            </li>";
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>
+
+    </ul>
 </div>
+</div>
+
+</div>
+
+</div>
+
 
 </div>
 <footer class="bg-white dark:bg-gray-900">
@@ -311,7 +315,42 @@ src="https://www.chatbase.co/chatbot-iframe/v_JUns1z3xXD1z5otk-0x"
     </div>
 </footer>
 
+    <script>
+    // Function to handle search
+    function search() {
+        var searchTerm = document.getElementById('search-bar').value.toLowerCase();
+        var searchResults = document.getElementById('search-results');
+
+        // Replace this with your logic to fetch search results
+        // For now, let's assume you have an array of results
+        var results = [
+            { title: 'Result 1', link: '/result1.html' },
+            { title: 'Result 2', link: '/result2.html' },
+            { title: 'Result 3', link: '/result3.html' },
+        ];
+
+        // Clear previous results
+        searchResults.innerHTML = '';
+
+        // Display results
+        if (searchTerm.trim() !== '') {
+            results.forEach(function (result) {
+                var resultItem = document.createElement('div');
+                resultItem.innerHTML = '<a href="' + result.link + '">' + result.title + '</a>';
+                searchResults.appendChild(resultItem);
+            });
+
+            // Show the search results container
+            searchResults.style.display = 'block';
+        } else {
+            // Hide the search results container if the search term is empty
+            searchResults.style.display = 'none';
+        }
+    }
+</script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 <script src="/index.js"></script>
+<script src="searchjs.js"></script>
 </body>
 </html>

@@ -1,13 +1,4 @@
 <?php
-
-session_start();
-
-// Check if the user is not logged in, redirect to admin_login.php
-if (!isset($_SESSION['user'])) {
-    header("Location: admin_login.php");
-    exit();
-}
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $servername = "localhost";
@@ -26,7 +17,7 @@ if ($conn->connect_error) {
 // Handle delete action
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
     $deleteId = $_POST['delete_id'];
-    $deleteSql = "DELETE FROM form_submissions WHERE scamId = $deleteId";
+    $deleteSql = "DELETE FROM report WHERE id = $deleteId";
     if ($conn->query($deleteSql) === TRUE) {
         echo json_encode(['success' => true]);
         exit();
@@ -37,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
 }
 
 // Fetch contact form submissions
-$sql = "SELECT * FROM scams ORDER BY created_at DESC";
+$sql = "SELECT * FROM report ORDER BY incident_date DESC";
 $result = $conn->query($sql);
 
 $conn->close();
@@ -50,7 +41,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>Scam posted</title>
+    <title>report Form Submissions</title>
     <!-- Add your styling if needed -->
     <style>
         body {
@@ -89,36 +80,35 @@ $conn->close();
 </head>
 <body>
     <div class="container">
-        <h2 class="text-center mb-4">Posted Scam</h2>
+        <h2 class="text-center mb-4">Incident Report Submissions</h2>
         <ul class="list-group">
             <?php
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo '<li class="list-group-item">';
-                    echo '<strong>' . $row['name'] . ' </strong>';
+                    echo '<strong>' . $row['name'] . ' ' . $row['contact'] . '</strong>';
                     echo '<br>';
-                    echo 'Created on: ' . $row['created_at'];
+                    echo 'Received at: ' . $row['incident_date'];
                     echo '<br>';
-                    echo '<button class="btn btn-info" data-toggle="modal" data-target="#messageModal' . $row['scamId'] . '">Read Message</button>';
-                    echo ' <button class="btn btn-danger delete-btn" data-id="' . $row['scamId'] . '">Delete</button>';
+                    echo '<button class="btn btn-info" data-toggle="modal" data-target="#messageModal' . $row['id'] . '">Read Message</button>';
+                    echo ' <button class="btn btn-danger delete-btn" data-id="' . $row['id'] . '"><i class="fas fa-trash"></i> Delete</button>';
                     echo '</li>';
 
                     // Add a modal for each submission
-                    echo '<div class="modal fade" id="messageModal' . $row['scamId'] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+                    echo '<div class="modal fade" id="messageModal' . $row['id'] . '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
                     echo '<div class="modal-dialog" role="document">';
                     echo '<div class="modal-content">';
                     echo '<div class="modal-header">';
-                    echo '<h5 class="modal-title" id="exampleModalLabel">' . $row['name'] . ' \'s Message</h5>';
+                    echo '<h5 class="modal-title" id="exampleModalLabel">' . $row['name'] . ' ' . $row['contact'] . '\'s Message</h5>';
                     echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
                     echo '<span aria-hidden="true">&times;</span>';
                     echo '</button>';
                     echo '</div>';
                     echo '<div class="modal-body">';
-                    echo '<p><strong>Description:</strong> ' . $row['description'] . '</p>';
-                    echo '<p><strong>HowPerformed:</strong> ' . $row['howPerformed'] . '</p>';
-                    echo '<p><strong>PreventiveMeasure:</strong> ' . $row['preventiveMeasure'] . '</p>';
-                    echo '<p><strong>Summary:</strong> ' . $row['summary'] . '</p>';
-                    echo '<p><strong>Created_at:</strong> ' . $row['created_at'] . '</p>';
+                    echo '<p><strong>Email:</strong> ' . $row['email'] . '</p>';
+                    echo '<p><strong>Contact Number:</strong> ' . $row['contact'] . '</p>';
+                    echo '<p><strong>Address:</strong> ' . $row['post_content'] . '</p>';
+                    echo '<p><strong>Submission Date:</strong> ' . $row['incident_date'] . '</p>';
                     echo '</div>';
                     echo '<div class="modal-footer">';
                     echo '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
@@ -140,7 +130,7 @@ $conn->close();
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
+ <script>
     // Delete button click event
     document.addEventListener('click', function (event) {
         if (event.target.classList.contains('delete-btn')) {
@@ -170,6 +160,8 @@ $conn->close();
             }
         }
     });
-    </script>
+</script>
+
+
 </body>
 </html>
