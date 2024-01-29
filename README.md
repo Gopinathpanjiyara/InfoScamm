@@ -16,5 +16,5 @@ Welcome to InfoScam, a platform dedicated to providing information about various
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Gopinath987/InfoScamm.git
-f
+   https://github.com/Gopinath987/InfoScamm.git
+
