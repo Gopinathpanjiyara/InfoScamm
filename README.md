@@ -1,4 +1,4 @@
-## InfoScam Website
+# InfoScam Website
 
 Welcome to InfoScam, a platform dedicated to providing information about various scams, frauds, and ways to stay safe online.
 
