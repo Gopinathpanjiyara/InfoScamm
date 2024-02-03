@@ -2,7 +2,7 @@
 
 Welcome to InfoScam, a platform dedicated to providing information about various scams, frauds, and ways to stay safe online.
 
-** Features**
+**Features**
 
 - Scam Listings: Browse through a curated list of known scams, including details about their nature and how they are performed.
 
