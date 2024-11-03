@@ -192,9 +192,9 @@
 <?php
 // Replace the following with your database connection code
 $servername = "localhost";
-$username = "id21480896_msrit";
+$username = "id22177123_db";
 $password = "Aman@143";
-$dbname = "id21480896_msritproject";
+$dbname = "id22177123_localhost";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

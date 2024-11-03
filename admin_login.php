@@ -7,9 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check the credentials in the database
     $dbHost = 'localhost'; // Hostname or IP address of your MySQL server
-    $dbName = 'id21480896_msritproject'; // Name of your database
-    $dbUser = 'id21480896_msrit'; // Your database username
+    $dbName = 'id22177123_localhost'; // Name of your database
+    $dbUser = 'id22177123_db'; // Your database username
     $dbPass = 'Aman@143';
+
 
     try {
         $conn = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);

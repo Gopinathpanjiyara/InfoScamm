@@ -27,6 +27,17 @@
           .ifr {
             flex-direction: column; /* Updated to stack items vertically on mobile */
           }
+          .scam-aware{
+            flex-direction: column;
+            padding:5px;
+          }
+          .scam-aware iframe{
+        
+            max-width: 22rem;
+            padding-right:12px;
+            
+            
+          }
       
           .card-container {
             flex-direction: column;
@@ -50,8 +61,73 @@
     /*display: none;*/
 }
 
+/* .scam-aware{
+    border: 2px solid red;
+    display: flex;
+    padding: 12px;
+    gap: 2rem;
 }
+.scam-aware iframe{
+    border-radius: 12px;
+    
+} */
+.scam-aware {
+        display: flex;
+       margin: 8px;
+        
+        gap: 6px;
+    }
 
+    .youtube-iframe {
+        border-radius: 4px;
+        width: 100%; /* Make the iframe fill the container width */
+        max-width: 560px; /* Set a maximum width to avoid stretching on larger screens */
+        height: 315px; /* Set the initial height for larger screens */
+
+        /* Responsive styles for smaller screens */
+        @media (max-width: 767px) {
+            height: 200px; /* Adjust the height for smaller screens */
+           display: block;
+           margin: auto;
+           border-radius: 5px;
+        }
+    }
+    .marquee-container {
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            animation: marqueeAnimation 15s linear infinite;
+        }
+
+        /* Define the marquee text */
+        .marquee-text {
+            display: inline-block;
+           /* Move text outside the container to start with */
+            animation: marqueeMove 15s linear infinite;
+        }
+
+        /* Define the marquee animation */
+        @keyframes marqueeAnimation {
+            0%   { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Define the text movement animation */
+        @keyframes marqueeMove {
+            0%   { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Style the link within the marquee */
+        .marquee-link {
+            text-decoration: none;
+            color: blue; /* Adjust the color as needed */
+        }
+        .marquee-icon {
+            display: inline-block;
+            margin-left: 10px; /* Adjust the margin as needed */
+            height: 80px;
+        }
       </style>
       
   
@@ -106,7 +182,9 @@
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <a href="google.com">
             <img src="/1.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </a>
         </div>
         <!-- Item 2 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
@@ -151,12 +229,21 @@
         </span>
     </button>
 </div>
-
+<br>
+<hr>
+<!--  -->
+<marquee direction="left" behavior="scroll" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start()">
+    <a href="your_target_page.html" style="text-decoration: none; color: blue;">Cyber Awareness WorkShop on 15 Mar 2024 ||</a>
+    <a href="your_target_page.html" style="text-decoration: none; color: blue;">New Update Rolling Out Soon</a><img src="/—Pngtree—new_146126.png" alt="Icon" style="display: inline-block; height: 25px; margin-left: 10px;">
+    
+    
+    <span style="border-bottom: 1px solid #ccc; margin: 0 10px;"></span>
+</marquee><hr>
 
 
 <div class="ifr">
 <iframe
-src="https://www.chatbase.co/chatbot-iframe/sfi4Ty3ZPFYPnILhakv9j"
+src="https://www.chatbase.co/chatbot-iframe/IpWZEhEJ-5UUC5IJ_2EOY"
             width="50%"
             style="height: 400px;"
             frameborder="0"
@@ -175,9 +262,9 @@ src="https://www.chatbase.co/chatbot-iframe/sfi4Ty3ZPFYPnILhakv9j"
        <?php
         // Replace the following with your database connection code
         $servername = "localhost";
-        $username = "id21480896_msrit";
+        $username = "id22177123_db";
         $password = "Aman@143";
-        $dbname = "id21480896_msritproject";
+        $dbname = "id22177123_localhost";
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -222,6 +309,12 @@ $conn->close();
 
 
 </div>
+<div class="scam-aware">
+    <iframe class="youtube-iframe" src="https://www.youtube.com/embed/Zxee95aZExM?si=Kr9NwG0bYBjUErSc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe class="youtube-iframe" src="https://www.youtube.com/embed/ZKOXdWTdwPU?si=qQadKf9f9iLsLils" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe class="youtube-iframe" src="https://www.youtube.com/embed/-6aAXT4SznI?si=_ax845f8U3jw_0n7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
 <footer class="bg-white dark:bg-gray-900">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
